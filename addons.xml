@@ -50,7 +50,7 @@
 
 <addon id="plugin.video.redtube" 
 	     name="RedTube" 
-	     version="1.00" 
+	     version="1.01" 
 	     provider-name="Echo Coder">
   <requires>
     <import addon="script.module.requests" />
