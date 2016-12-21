@@ -74,10 +74,10 @@
 
 <addon id="plugin.video.chaturbate" 
 	     name="Chaturbate" 
-	     version="1.01" 
+	     version="1.02" 
 	     provider-name="Echo Coder">
   <requires>
-    <import addon="script.module.requests" />
+    <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
