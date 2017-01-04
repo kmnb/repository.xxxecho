@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.xxx-o-dus" 
 	     name="XXX-O-DUS" 
-	     version="1.04" 
+	     version="1.05" 
 	     provider-name="Echo Coder">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -22,5 +22,12 @@
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <website>http://www.echocoder.com/repo</website>
     <email>echocoder@protonmail.com</email>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <screenshot>resources/art/screenshots/screenshot-01.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-02.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-03.png</screenshot>
+    </assets>
   </extension>
 </addon>
