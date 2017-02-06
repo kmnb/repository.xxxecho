@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.xxxecho" name="ECHO XXX Repository" version="1.02" provider-name="Echo Coder">
+<addon id="repository.xxxecho" name="ECHO XXX Repository" version="1.03" provider-name="Echo Coder">
 	<extension point="xbmc.addon.repository" name="Echo Coder XXX Repository">
 		<info compressed="false">https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml</info>
         <checksum>https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml.md5</checksum>
@@ -8,6 +8,7 @@
 	<extension point="xbmc.addon.metadata">
 		<summary>The official Echo Coder XXX Repository.</summary>
 		<description>Support available at Twitter: @EchoCoder</description>
+		<disclaimer>None</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
