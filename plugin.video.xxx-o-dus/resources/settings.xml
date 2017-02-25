@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="[COLOR deeppink]GENERAL[/COLOR]">
+		<setting type="lsep" label="[COLOR=red]HISTORY MONITORING - ( DEFAULT = OFF )[/COLOR]"/>
+		<setting id="history_setting" type="bool" label="[COLOR pink]Log History:[/COLOR]" default="false"/>
+		<setting type="lsep" label=" "/>
+		<setting type="lsep" label="[COLOR=red]DOWNLOAD LOCATION[/COLOR]"/>
+		<setting id="download_location" type="folder" label="[COLOR pink]Download Location:[/COLOR]" default="special://home\userdata\addon_data\plugin.video.xxx-o-dus\Downloads\"/>
+		<setting type="lsep" label=" "/>
+	</category>
+</settings>

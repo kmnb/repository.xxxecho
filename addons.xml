@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.xxx-o-dus" 
-	     name="XXX-O-DUS" 
-	     version="1.13" 
+<addon id="plugin.video.xxx-o-dus"
+	     name="XXX-O-DUS"
+	     version="1.13"
 	     provider-name="Echo Coder">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -33,9 +33,9 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.youporn" 
-	     name="YouPorn" 
-	     version="2.00" 
+<addon id="plugin.video.youporn"
+	     name="YouPorn"
+	     version="2.00"
 	     provider-name="Echo Coder">
   <requires>
 	<import addon="xbmc.python" version="2.1.0" />
@@ -58,19 +58,6 @@ Skin and code for skin by Demonstratorz</description>
     <website>http://www.echocoder.com</website>
     <email>echocoder@protonmail.com</email>
   </extension>
-</addon>
-
-<addon id="script.module.urlresolver" name="URLResolver" version="3.0.26" provider-name="tvaddons.ag, Eldorado">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-	</requires>
-	<extension point="xbmc.python.module" library="lib" />
-	<extension point="xbmc.python.pluginsource" library="lib/default.py" />
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-		<summary lang="en">Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
-		<description lang="en">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
-	</extension>
 </addon>
 
 <addon id="repository.xxxecho" name="ECHO XXX Repository" version="1.04" provider-name="Echo Coder">
