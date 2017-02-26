@@ -125,12 +125,20 @@ def zipfolder(foldername, target_dir, zips_dir):
 if ( __name__ == "__main__" ):
     # start
     Generator()
-
     #rezip files an move
-    print 'Starting zip file creation...'
+    print 'Removing all pyo files from addons...'
     rootdir = sys.path[0]
     zipsdir = rootdir + '\zips'
-
+    #remove all pyo file from addons.
+    for root, dirs, files in os.walk(rootdir):               
+        for f in files:
+            try:
+                if not (f.endswith(".pyo")): continue
+                os.unlink(os.path.join(root, f))
+                print 'Removing: ' + os.path.join(root, f)
+            except:
+                pass
+    print 'Starting zip file creation...'
     filesinrootdir = os.listdir(rootdir)
     for x in filesinrootdir:
         if re.search("plugin|repository|script|skin|network|program" , x):#|repository
