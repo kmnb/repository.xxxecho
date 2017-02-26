@@ -162,12 +162,12 @@ if ( __name__ == "__main__" ):
                     for elem in root.iter('addon'):
                         print elem.tag + ': ' + elem.attrib['version']
                         version = '-'+elem.attrib['version']
-                if re.search("changelog", y):
+                if re.search("changelog|icon|fanart", y):
                     firstpart = y[:-4]
                     lastpart = y[len(y)-4:]
                     shutil.copyfile(os.path.join(rootdir,x,y),os.path.join(zipsfolder,firstpart+version+lastpart))
                     print 'Copying ' + y + ' to ' + zipsfolder
-                if re.search("changelog|icon|fanart", y):
+                if re.search("changelog", y):
                     shutil.copyfile(os.path.join(rootdir,x,y),os.path.join(zipsfolder,y))
                     print 'Copying ' + y + ' to ' + zipsfolder
             zipfolder(zipfilenamefirstpart+zipfilenamelastpart, foldertozip, zipsfolder)
