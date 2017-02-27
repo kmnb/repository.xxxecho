@@ -39,7 +39,7 @@ SEARCH_FILE       = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",242,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",244,icon,fanart)
 
 	try:
 		link = common.open_url('https://www.eporner.com/0/').replace('/n','')

@@ -37,7 +37,7 @@ DOWNLOADS_FILE    = xbmc.translatePath(os.path.join('special://home/userdata/add
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",232,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",234,icon,fanart)
 
 	link = common.open_url('http://justporno.tv').replace('\n','')
 	

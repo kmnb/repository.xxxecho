@@ -43,7 +43,7 @@ SEARCH_FILE      = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",52,search_icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",54,search_icon,fanart)
 
 	result = common.open_url('http://www.pornhd.com/category')
 	match = re.compile('<div class="tag-150-container">(.+?)<div class="footer-zone">',re.DOTALL).findall(result)

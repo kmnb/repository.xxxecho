@@ -54,7 +54,7 @@ MOST_DIS       = 'http://www.youporn.com/most_discussed/'
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",72,search_icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",74,search_icon,fanart)
 	common.addDir("[COLOR pink][I]New Videos[/I][/COLOR]",NEW_VIDS,71,new_icon,fanart)
 	common.addDir("[COLOR pink][I]Top Rated[/I][/COLOR]",TOP_VIDS,71,top_icon,fanart)
 	common.addDir("[COLOR pink][I]Most Viewed[/I][/COLOR]",MOST_VIEW,71,viewed_icon,fanart)

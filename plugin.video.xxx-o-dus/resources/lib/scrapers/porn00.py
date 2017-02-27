@@ -45,7 +45,7 @@ MOST_VIEW      = 'http://www.porn00.org/most-viewed/'
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]",'url',212,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]",'url',64,icon,fanart)
 	common.addDir("[COLOR pink][I]New Videos[/I][/COLOR]",NEW_URL,211,icon,fanart)
 	common.addDir("[COLOR pink][I]Most Viewed[/I][/COLOR]",MOST_VIEW,211,icon,fanart)
 

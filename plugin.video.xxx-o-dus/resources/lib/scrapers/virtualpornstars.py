@@ -39,7 +39,7 @@ SEARCH_FILE      = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",222,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",224,icon,fanart)
 
 	result = common.open_url('http://virtualpornstars.com/')
 	match = re.compile('<li class="cat-item cat(.+?)a>',re.DOTALL).findall(result)

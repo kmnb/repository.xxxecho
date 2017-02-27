@@ -44,7 +44,7 @@ MOST_LIKE      = 'http://spankbang.com/top_rated/'
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",203,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",205,icon,fanart)
 	common.addDir("[COLOR pink][I]Trending[/I][/COLOR]",TRENDING_URL,202,icon,fanart)
 	common.addDir("[COLOR pink][I]New[/I][/COLOR]",NEW_URL,202,icon,fanart)
 	common.addDir("[COLOR pink][I]Most Popular[/I][/COLOR]",MOST_POP,201,icon,fanart)

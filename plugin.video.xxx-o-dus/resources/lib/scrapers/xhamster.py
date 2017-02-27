@@ -44,7 +44,7 @@ MOST_VIEW      = 'https://xhamster.com/rankings/weekly-top-viewed.html'
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",12,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",14,icon,fanart)
 	common.addDir("[COLOR pink][I]50 Newest Videos[/I][/COLOR]",NEW_VIDS,11,icon,fanart)
 	common.addDir("[COLOR pink][I]Top Rated[/I][/COLOR]",TOP_VIDS,11,icon,fanart)
 	common.addDir("[COLOR pink][I]Most Viewed[/I][/COLOR]",MOST_VIEW,11,icon,fanart)

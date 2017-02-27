@@ -38,7 +38,7 @@ SEARCH_FILE    = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",95,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",97,icon,fanart)
 
 	link = common.open_url(BASE_VIDEOS).replace('\n','').replace('\r','')
 

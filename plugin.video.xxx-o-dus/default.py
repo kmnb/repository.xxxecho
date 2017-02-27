@@ -78,8 +78,45 @@ GET_REPO_VERSION    =  xbmc.translatePath('special://home/addons/repository.xxxe
 BASE_UPDATE         = base64.b64decode(b'aHR0cHM6Ly9naXRodWIuY29tL2VjaG9jb2RlcmtvZGkvcmVwb3NpdG9yeS54eHhlY2hvL3Jhdy9tYXN0ZXIvemlwcy9wbHVnaW4udmlkZW8ueHh4LW8tZHVzL3BsdWdpbi52aWRlby54eHgtby1kdXMt')
 BASE_REPO_UPDATE    = base64.b64decode(b'aHR0cHM6Ly9naXRodWIuY29tL2VjaG9jb2RlcmtvZGkvcmVwb3NpdG9yeS54eHhlY2hvL3Jhdy9tYXN0ZXIvemlwcy9yZXBvc2l0b3J5Lnh4eGVjaG8vcmVwb3NpdG9yeS54eHhlY2hvLQ==')
 
-cache.check()
+#cache.check()
 
+SEND_TO_CHECK = REPO_FOLDER + '|SPLIT|' + REPO_INFO
+checker.check(SEND_TO_CHECK)
+
+if not os.path.exists(I_AGREE): 
+	f = open(TERMS,mode='r'); msg = f.read(); f.close()
+	common.TextBoxes("%s" % msg)
+	choice = xbmcgui.Dialog().yesno(AddonTitle, '[COLOR white]Do you agree to the terms and conditions of this addon?[/COLOR]','',yeslabel='[COLOR lime]YES[/COLOR]',nolabel='[COLOR orangered]NO[/COLOR]')
+	if choice == 1:
+		f = open(INFO,mode='r'); msg = f.read(); f.close()
+		common.TextBoxes("%s" % msg)
+		dialog.ok(AddonTitle, "[COLOR pink]We can see this is the first time you have used XXX-O-DUS. The next prompt is important as it will allow you to enable the history section of the addon and it will also allow you to select the location you would like to be used to download videos.[/COLOR]")
+		plugintools.open_settings_dialog()
+		open(I_AGREE, 'w')
+	else:
+		sys.exit(0)
+
+download_location   = plugintools.get_setting("download_location")
+DOWNLOAD_FOLDER = xbmc.translatePath(download_location)
+if not os.path.exists(DOWNLOAD_FOLDER):
+	os.makedirs(DOWNLOAD_FOLDER)
+
+if not os.path.isfile(HISTORY_FILE):
+	f = open(HISTORY_FILE,'w')
+	f.write('#START OF FILE#')
+	f.close()
+if not os.path.isfile(FAVOURITES_FILE):
+	f = open(FAVOURITES_FILE,'w')
+	f.write('#START OF FILE#')
+	f.close()
+if not os.path.isfile(DOWNLOADS_FILE):
+	f = open(DOWNLOADS_FILE,'w')
+	f.write('#START OF FILE#')
+	f.close()
+if not os.path.isfile(SEARCH_FILE):
+	f = open(SEARCH_FILE,'w')
+	f.write('#START OF FILE#')
+	f.close()
 try:
 	search_on_off  = plugintools.get_setting("search_setting")
 	if not search_on_off == "true" or "false":
@@ -87,22 +124,6 @@ try:
 except: plugintools.set_setting("search_setting", "true")
 
 def GetMenu():
-
-	SEND_TO_CHECK = REPO_FOLDER + '|SPLIT|' + REPO_INFO
-	checker.check(SEND_TO_CHECK)
-
-	if not os.path.exists(I_AGREE): 
-		f = open(TERMS,mode='r'); msg = f.read(); f.close()
-		common.TextBoxes("%s" % msg)
-		choice = xbmcgui.Dialog().yesno(AddonTitle, '[COLOR white]Do you agree to the terms and conditions of this addon?[/COLOR]','',yeslabel='[COLOR lime]YES[/COLOR]',nolabel='[COLOR orangered]NO[/COLOR]')
-		if choice == 1:
-			f = open(INFO,mode='r'); msg = f.read(); f.close()
-			common.TextBoxes("%s" % msg)
-			dialog.ok(AddonTitle, "[COLOR pink]We can see this is the first time you have used XXX-O-DUS. The next prompt is important as it will allow you to enable the history section of the addon and it will also allow you to select the location you would like to be used to download videos.[/COLOR]")
-			plugintools.open_settings_dialog()
-			open(I_AGREE, 'w')
-		else:
-			sys.exit(0)
 
 	if not os.path.exists(PARENTAL_FOLDER):
 		choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Would you like to enable the parental controls now?[/COLOR]","" ,yeslabel='[COLOR orangered]NO[/COLOR]',nolabel='[COLOR lime]YES[/COLOR]')
@@ -128,28 +149,6 @@ def GetMenu():
 					if not current_pin == pass_one:
 						dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
 						sys.exit(0)
-
-	download_location   = plugintools.get_setting("download_location")
-	DOWNLOAD_FOLDER = xbmc.translatePath(download_location)
-	if not os.path.exists(DOWNLOAD_FOLDER):
-		os.makedirs(DOWNLOAD_FOLDER)
-
-	if not os.path.isfile(HISTORY_FILE):
-		f = open(HISTORY_FILE,'w')
-		f.write('#START OF FILE#')
-		f.close()
-	if not os.path.isfile(FAVOURITES_FILE):
-		f = open(FAVOURITES_FILE,'w')
-		f.write('#START OF FILE#')
-		f.close()
-	if not os.path.isfile(DOWNLOADS_FILE):
-		f = open(DOWNLOADS_FILE,'w')
-		f.write('#START OF FILE#')
-		f.close()
-	if not os.path.isfile(SEARCH_FILE):
-		f = open(SEARCH_FILE,'w')
-		f.write('#START OF FILE#')
-		f.close()
 
 	a=open(GET_VERSION).read()
 	b=a.replace('\n',' ').replace('\r',' ')

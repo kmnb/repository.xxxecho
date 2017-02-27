@@ -45,7 +45,7 @@ SEARCH_FILE      = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",52,search_icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",64,search_icon,fanart)
 
 	result = common.open_url('http://www.porn.com/categories')
 	match = re.compile('<div class="main"><h1>Featured Categories</h1>(.+?)<h2>All Categories</h2>',re.DOTALL).findall(result)

@@ -54,7 +54,7 @@ RECOM          = 'http://www.redtube.com/recommended/'
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",43,search_icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",45,search_icon,fanart)
 	common.addDir("[COLOR pink][I]Newest[/I][/COLOR]",NEW_VIDS,42,new_icon,fanart)
 	common.addDir("[COLOR pink][I]Recommended[/I][/COLOR]",RECOM,42,discussed_icon,fanart)
 	common.addDir("[COLOR pink][I]Top Rated[/I][/COLOR]",TOP_VIDS,42,top_icon,fanart)

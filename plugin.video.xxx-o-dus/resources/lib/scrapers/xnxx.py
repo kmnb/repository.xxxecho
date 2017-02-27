@@ -47,7 +47,7 @@ featured_url   = 'http://www.xnxx.com'
 def MAIN_MENU():
 
 				
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",32,search_icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",29,search_icon,fanart)
 	common.addDir("[COLOR pink][I]Featured Videos[/I][/COLOR]",featured_url,31,icon,fanart)
 	common.addDir("[COLOR pink][I]New Videos[/I][/COLOR]",NEW_VIDS,31,icon,fanart)
 	common.addDir("[COLOR pink][I]Hot Videos[/I][/COLOR]",HOT_VIDS,31,icon,fanart)

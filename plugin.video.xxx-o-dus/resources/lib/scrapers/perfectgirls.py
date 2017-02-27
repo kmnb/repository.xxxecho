@@ -39,7 +39,7 @@ SEARCH_FILE          = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml
 
 def MAIN_MENU():
 
-	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",312,icon,fanart)
+	common.addDir("[COLOR red][B]SEARCH[/B][/COLOR]","url",314,icon,fanart)
 
 	result = common.open_url('http://www.perfectgirls.net')
 	
