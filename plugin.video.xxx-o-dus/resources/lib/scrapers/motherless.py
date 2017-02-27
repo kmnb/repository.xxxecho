@@ -33,6 +33,8 @@ BASE_VIDEOS    = 'http://motherless.com/videos'
 BASE_IMAGE     = 'http://motherless.com/images'
 HISTORY_FILE   = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'history.xml'))
 FAVOURITES_FILE= xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'favourites.xml'))
+DATA_FOLDER    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
+SEARCH_FILE    = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
@@ -84,18 +86,40 @@ def GET_CONTENT(url):
             common.addDir('[COLOR yellow]Next Page >>[/COLOR]',np,94,icon,fanart)       
         except:pass
 
-def SEARCH():
+def SEARCH_DECIDE():
 
-    string =''
-    keyboard = xbmc.Keyboard(string, 'Enter Search Term')
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-        string = keyboard.getText().replace(' ','%20')
-        if len(string)>1:
-            url = "http://motherless.com/term/" + string.lower()
-            GET_CONTENT(url)
-        else: quit()
+	search_on_off  = plugintools.get_setting("search_setting")
+	if search_on_off == "true":
+		name = "null"
+		url = "95"
+		common.SEARCH_HISTORY(name,url)
+	else:
+		url = "null"
+		SEARCH(url)
 
+def SEARCH(url):
+
+	if url == "null":
+		string =''
+		keyboard = xbmc.Keyboard(string, 'Enter Search Term')
+		keyboard.doModal()
+		if keyboard.isConfirmed():
+			search_on_off  = plugintools.get_setting("search_setting")
+			if search_on_off == "true":
+				term = keyboard.getText()
+				a=open(SEARCH_FILE).read()
+				b=a.replace('#START OF FILE#', '#START OF FILE#\n<item>\n<term>'+str(term)+'</term>\n</item>\n')
+				f= open(SEARCH_FILE, mode='w')
+				f.write(str(b))
+			string = keyboard.getText().replace(' ','%20')
+			if len(string)>1:
+				url = "http://motherless.com/term/" + string.lower()
+				GET_CONTENT(url)
+			else: quit()
+	else:
+		string = url.replace(' ','%20')
+		url = "http://motherless.com/term/" + string.lower()
+		GET_CONTENT(url)
 
 def MAIN_MENU_PICTURES():
 

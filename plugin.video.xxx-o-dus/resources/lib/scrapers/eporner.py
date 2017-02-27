@@ -34,6 +34,8 @@ icon              = xbmc.translatePath(os.path.join('special://home/addons/' + a
 HISTORY_FILE      = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'history.xml'))
 FAVOURITES_FILE   = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'favourites.xml'))
 DOWNLOADS_FILE    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id , 'downloads.xml'))
+DATA_FOLDER       = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
+SEARCH_FILE       = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
 
 def MAIN_MENU():
 
@@ -92,11 +94,16 @@ def GET_CONTENT(url):
 
 	if nextpage == 1:
 		try:
-			np=re.compile('<a href=\'([^"]*).+?title=.+?ext page\'>').findall(link)[0]
-		except: np=re.compile('<a href=\"([^"]*)\" title=\"Next page\">',re.DOTALL).findall(link)[0]
-		np=np.replace("'","").replace('"','')
-		np = 'https://www.eporner.com' + np
-		common.addDir('[COLOR white]Next Page >>[/COLOR]',np,241,icon,fanart)       
+			try:
+				np=re.compile('<a href=\'([^"]*).+?title=.+?ext page\'>').findall(link)[0]
+			except:
+				try:
+					np=re.compile('<a href=\"([^"]*)\" title=\"Next page\">',re.DOTALL).findall(link)[0]
+				except: pass
+			np=np.replace("'","").replace('"','')
+			np = 'https://www.eporner.com' + np
+			common.addDir('[COLOR white]Next Page >>[/COLOR]',np,241,icon,fanart)       
+		except: pass
 	kodi_name = common.GET_KODI_VERSION()
 
 	if kodi_name == "Jarvis":
@@ -105,17 +112,40 @@ def GET_CONTENT(url):
 		xbmc.executebuiltin('Container.SetViewMode(52)')
 	else: xbmc.executebuiltin('Container.SetViewMode(500)')
 
-def SEARCH():
+def SEARCH_DECIDE():
 
-    string =''
-    keyboard = xbmc.Keyboard(string, 'Enter Search Term')
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-        string = keyboard.getText().replace(' ','-')
-        if len(string)>1:
-            url = "https://www.eporner.com/search/" + string.lower()
-            GET_CONTENT(url)
-        else: quit()
+	search_on_off  = plugintools.get_setting("search_setting")
+	if search_on_off == "true":
+		name = "null"
+		url = "242"
+		common.SEARCH_HISTORY(name,url)
+	else:
+		url = "null"
+		SEARCH(url)
+
+def SEARCH(url):
+
+	if url == "null":
+		string =''
+		keyboard = xbmc.Keyboard(string, 'Enter Search Term')
+		keyboard.doModal()
+		if keyboard.isConfirmed():
+			search_on_off  = plugintools.get_setting("search_setting")
+			if search_on_off == "true":
+				term = keyboard.getText()
+				a=open(SEARCH_FILE).read()
+				b=a.replace('#START OF FILE#', '#START OF FILE#\n<item>\n<term>'+str(term)+'</term>\n</item>\n')
+				f= open(SEARCH_FILE, mode='w')
+				f.write(str(b))
+			string = keyboard.getText().replace(' ','-')
+			if len(string)>1:
+				url = "https://www.eporner.com/search/" + string.lower()
+				GET_CONTENT(url)
+			else: quit()
+	else:
+		string = url.replace(' ','-')
+		url = "https://www.eporner.com/search/" + string.lower()
+		GET_CONTENT(url)
 
 def PLAY_URL(name,url,iconimage):
 
@@ -182,7 +212,7 @@ def PLAY_URL(name,url,iconimage):
 	
 	elif choice == 0:
 		history_on_off  = plugintools.get_setting("history_setting")
-		if history_on_off == "true":	
+		if history_on_off == "true":
 			date_now = datetime.datetime.now().strftime("%d-%m-%Y")
 			time_now = datetime.datetime.now().strftime("%H:%M")
 			a=open(HISTORY_FILE).read()

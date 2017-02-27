@@ -94,17 +94,40 @@ def GET_CONTENT(url):
 		xbmc.executebuiltin('Container.SetViewMode(52)')
 	else: xbmc.executebuiltin('Container.SetViewMode(500)')
 
-def SEARCH():
+def SEARCH_DECIDE():
 
-    string =''
-    keyboard = xbmc.Keyboard(string, 'Enter Search Term')
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-        string = keyboard.getText().replace(' ','+')
-        if len(string)>1:
-            url = "http://justporno.tv/search?query=" + string.lower()
-            GET_CONTENT(url)
-        else: quit()
+	search_on_off  = plugintools.get_setting("search_setting")
+	if search_on_off == "true":
+		name = "null"
+		url = "232"
+		common.SEARCH_HISTORY(name,url)
+	else:
+		url = "null"
+		SEARCH(url)
+
+def SEARCH(url):
+
+	if url == "null":
+		string =''
+		keyboard = xbmc.Keyboard(string, 'Enter Search Term')
+		keyboard.doModal()
+		if keyboard.isConfirmed():
+			search_on_off  = plugintools.get_setting("search_setting")
+			if search_on_off == "true":
+				term = keyboard.getText()
+				a=open(SEARCH_FILE).read()
+				b=a.replace('#START OF FILE#', '#START OF FILE#\n<item>\n<term>'+str(term)+'</term>\n</item>\n')
+				f= open(SEARCH_FILE, mode='w')
+				f.write(str(b))
+			string = keyboard.getText().replace(' ','+')
+			if len(string)>1:
+				url = "http://justporno.tv/search?query=" + string.lower()
+				GET_CONTENT(url)
+			else: quit()
+	else:
+		string = url.replace(' ','+')
+		url = "http://justporno.tv/search?query=" + string.lower()
+		GET_CONTENT(url)
 
 def PLAY_URL(name,url,iconimage):
 

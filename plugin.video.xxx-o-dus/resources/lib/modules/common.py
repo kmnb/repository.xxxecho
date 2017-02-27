@@ -21,12 +21,42 @@ import time
 import base64
 import re
 from HTMLParser import HTMLParser
+from resources.lib.modules  import plugintools
 
 AddonTitle     = "[COLOR red]XXX-O-DUS[/COLOR]"
-dialog              = xbmcgui.Dialog()
-addon_id            = 'plugin.video.xxx-o-dus'
-fanart              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-icon                = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+dialog         = xbmcgui.Dialog()
+addon_id       = 'plugin.video.xxx-o-dus'
+fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
+icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+DATA_FOLDER    = xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
+SEARCH_FILE    = xbmc.translatePath(os.path.join(DATA_FOLDER , 'search.xml'))
+
+def SEARCH_HISTORY(name,url):
+
+	mode = int(url)
+	
+	search_on_off  = plugintools.get_setting("search_setting")
+
+	setting = "search_setting|SPLIT|" + search_on_off
+	addDir('[COLOR deeppink]New Search...[/COLOR]','null',mode,icon,fanart)
+	addLink('[COLOR deeppink]Clear History[/COLOR]','url',108,icon,fanart)
+	addLink('[COLOR orangered]Disable Search History[/COLOR]',setting,109,icon,fanart)
+	addLink('################## Recent Searches #########################','url',999,icon,fanart)
+
+	f = open(SEARCH_FILE,mode='r'); msg = f.read(); f.close()
+	msg = msg.replace('\n','')
+	match = re.compile('<item>(.+?)</item>').findall(msg)
+	for item in match:
+		url=re.compile('<term>(.+?)</term>').findall(item)[0]
+		addDir('[COLOR pink]' + url + '[/COLOR]',url,mode,icon,fanart)
+
+	kodi_name = GET_KODI_VERSION()
+
+	if kodi_name == "Jarvis":
+		xbmc.executebuiltin('Container.SetViewMode(500)')
+	elif kodi_name == "Krypton":
+		xbmc.executebuiltin('Container.SetViewMode(55)')
+	else: xbmc.executebuiltin('Container.SetViewMode(500)')
 
 def GET_KODI_VERSION():
 
