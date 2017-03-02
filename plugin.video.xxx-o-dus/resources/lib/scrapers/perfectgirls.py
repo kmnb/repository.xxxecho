@@ -43,22 +43,13 @@ def MAIN_MENU():
 
 	result = common.open_url('http://www.perfectgirls.net')
 	
-	match = re.compile('<table id="cats">(.+?)</table>',re.DOTALL).findall(result)
-	string = str(match)
-	match2 = re.compile('<td>(.+?)</td>',re.DOTALL).findall(string)
-	fail = 0
-	videos = 0
-	for item in match2:
+	match = re.compile('<li class="header-submenu__item">(.+?)</li>',re.DOTALL).findall(result)
+	for item in match:
 		try:
-			url=re.compile('<a href="(.+?)">.+?</a><br>').findall(item)[0]
-			title=re.compile('<a href=".+?">(.+?)</a><br>').findall(item)[0]
-			number=re.compile('<a href=".+?">.+?</a><br>.+?((.+?) clips)').findall(item)[0]
+			url=re.compile('href="(.+?)">.+?</a>').findall(item)[0]
+			title=re.compile('href=".+?">(.+?)</a>').findall(item)[0]
 			url = 'http://www.perfectgirls.net' + url
-			b = str(number)
-			c = b.replace('\\n','').replace('\n','').replace(' ','').replace('clips','').replace('(','').replace(')','').replace('\\','').replace("'",'')
-			c = c.split(',')[0]
-			videos = videos + int(float(c))
-			name = "[COLOR white]" + title + " [/COLOR]-[I] " + str(c) + " videos[/I]"
+			name = "[COLOR white]" + title + " [/COLOR]"
 			common.addDir(name,url,311,icon,fanart)
 		except: pass
 
@@ -72,6 +63,7 @@ def MAIN_MENU():
 
 def GET_CONTENT(url):
 
+	original = url
 	nextpage = 0
 	try:
 		a,url = url.split('|')
@@ -79,30 +71,26 @@ def GET_CONTENT(url):
 
 	checker = url
 	result = common.open_url(url)
-	match = re.compile('<td>(.+?)</td>',re.DOTALL).findall(result)
+	match = re.compile('<div class="list__item">(.+?)</a></div>',re.DOTALL).findall(result)
 	for item in match:
 		try:
 			title=re.compile('title="(.+?)"').findall(item)[0]
 			url=re.compile('href="(.+?)"').findall(item)[0]
-			iconimage=re.compile('src="(.+?)"').findall(item)[0]
+			iconimage=re.compile('data-original="(.+?)"').findall(item)[0]
 			if "http" not in iconimage:
-				iconimage=re.compile('data-original="(.+?)"').findall(item)[0]
-			url = 'http://www.perfectgirls.net' + url
+				iconimage=re.compile('altsrc="(.+?)"').findall(item)[0]
+			time=re.compile('<time>(.+?)</time>').findall(item)[0]
+			url = 'http://www.perfectgirls.net' + url + "/1"
 			url2 = title + '|SPLIT|' + url
-			name = '[COLOR pink]' + title + '[/COLOR]'
+			name = '[COLOR pink]' + title + '[/COLOR] - ' + time
 			name = common.CLEANUP(name)
 			common.addLink(name,url2,313,iconimage,iconimage)
 		except: pass
 	if nextpage == 1:
-		try:
-			np=re.compile('rel="next" href="(.+?)">').findall(result)[0]
-			a = int(np) - 1
-			b = str(a)
-			if b in checker:
-				url = checker.replace(b,np)
-			else: url = checker + '/' + np
+			b=re.compile('<a class="btn_wrapper__btn" href="([^"]*)">Next</a></li>').findall(result)[0]
+			a = original.rsplit('/', 0)[0]
+			url = a + "/" + b
 			common.addDir('[COLOR pink]Next Page >>[/COLOR]',url,311,icon,fanart)       
-		except:pass
 
 	kodi_name = common.GET_KODI_VERSION()
 
@@ -153,11 +141,7 @@ def PLAY_URL(name,url,iconimage):
 	dp = common.GET_LUCKY()
 	ref_url = url
 	result = common.open_url(url)
-	result2 = re.compile("get\(\"/get/(.*?).mp4\"",re.DOTALL).findall(result)[0]
-	get_vid = "http://perfectgirls.net/get/" + result2 + ".mp4"
-	result3 = common.open_url(get_vid)
-	result4 = re.compile("http(.*?).mp4",re.DOTALL).findall(result3)[0]
-	url = "http" + result4 + ".mp4"
+	url = re.compile('<source src="(.+?)"',re.DOTALL).findall(result)[-1]
 	choice = dialog.select("[COLOR red]Please select an option[/COLOR]", ['[COLOR pink]Watch Video[/COLOR]','[COLOR pink]Add to Favourites[/COLOR]','[COLOR pink]Download Video[/COLOR]'])
 
 	if choice == 1:
