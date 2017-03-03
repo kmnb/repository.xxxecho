@@ -48,7 +48,7 @@ def MAIN_MENU():
 		try:
 			url=re.compile('href="(.+?)">.+?</a>').findall(item)[0]
 			title=re.compile('href=".+?">(.+?)</a>').findall(item)[0]
-			url = 'http://www.perfectgirls.net' + url
+			url = 'http://www.perfectgirls.net' + url + "/1"
 			name = "[COLOR white]" + title + " [/COLOR]"
 			common.addDir(name,url,311,icon,fanart)
 		except: pass
@@ -80,15 +80,16 @@ def GET_CONTENT(url):
 			if "http" not in iconimage:
 				iconimage=re.compile('altsrc="(.+?)"').findall(item)[0]
 			time=re.compile('<time>(.+?)</time>').findall(item)[0]
-			url = 'http://www.perfectgirls.net' + url + "/1"
+			url = 'http://www.perfectgirls.net' + url
 			url2 = title + '|SPLIT|' + url
 			name = '[COLOR pink]' + title + '[/COLOR] - ' + time
 			name = common.CLEANUP(name)
 			common.addLink(name,url2,313,iconimage,iconimage)
 		except: pass
+
 	if nextpage == 1:
 			b=re.compile('<a class="btn_wrapper__btn" href="([^"]*)">Next</a></li>').findall(result)[0]
-			a = original.rsplit('/', 0)[0]
+			a = original.rpartition('/')[0]
 			url = a + "/" + b
 			common.addDir('[COLOR pink]Next Page >>[/COLOR]',url,311,icon,fanart)       
 

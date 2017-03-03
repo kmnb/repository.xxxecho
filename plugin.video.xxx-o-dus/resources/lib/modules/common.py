@@ -53,10 +53,10 @@ def SEARCH_HISTORY(name,url):
 	kodi_name = GET_KODI_VERSION()
 
 	if kodi_name == "Jarvis":
-		xbmc.executebuiltin('Container.SetViewMode(500)')
+		xbmc.executebuiltin('Container.SetViewMode(50)')
 	elif kodi_name == "Krypton":
 		xbmc.executebuiltin('Container.SetViewMode(55)')
-	else: xbmc.executebuiltin('Container.SetViewMode(500)')
+	else: xbmc.executebuiltin('Container.SetViewMode(50)')
 
 def GET_KODI_VERSION():
 
@@ -77,7 +77,7 @@ def GET_KODI_VERSION():
 	elif version >= 17.0 and version <= 17.9:
 		codename = 'Krypton'
 	else: codename = "Decline"
-	
+
 	return codename
 
 def GET_M3U_LIST(url):
@@ -204,8 +204,11 @@ def GET_LUCKY():
 
 def open_url(url):
     req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
-    response = urllib2.urlopen(req)
+    if not "referer" in url.lower():
+        req.add_header('Referer', 'https://www.google.com/')
+    if not "user-agent" in url.lower():
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
+    response = urllib2.urlopen(req, timeout = 10)
     link=response.read()
     response.close()
     return link
@@ -222,7 +225,7 @@ def addDir(name,url,mode,iconimage,fanartimage):
 
 def addLink(name,url,mode,iconimage,fanartimage):
 
-	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+iconimage+"&fanartimage="+urllib.quote_plus(fanartimage)
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&fanartimage="+urllib.quote_plus(fanartimage)
 	ok=True
 	liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
 	liz.setProperty( "fanart_Image", fanartimage )

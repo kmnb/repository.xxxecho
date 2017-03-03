@@ -23,6 +23,8 @@ from resources.lib.scrapers import watchxxxfree
 from resources.lib.scrapers import perfectgirls
 from resources.lib.scrapers import justpornotv
 from resources.lib.scrapers import eporner
+from resources.lib.scrapers import pornxs
+from resources.lib.scrapers import xvideos
 
 addon_id            = 'plugin.video.xxx-o-dus'
 AddonTitle          = '[COLOR orangered]XXX-O-DUS[/COLOR]'
@@ -50,6 +52,10 @@ watchxxxfree_icon   = xbmc.translatePath(os.path.join('special://home/addons/' +
 watchxxxfree_fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/watchxxxfree/fanart.jpg'))
 justporno_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/icon.png'))
 justporno_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/fanart.jpg'))
+pornxs_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/icon.png'))
+pornxs_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/fanart.jpg'))
+xvideos_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/icon.png'))
+xvideos_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/fanart.jpg'))
 
 BASE                = base64.decodestring('aHR0cDovL2VjaG9jb2Rlci5jb20vcHJpdmF0ZS9hZGRvbnMvc3BvcnRpZS9tZW51cy9tYWluLnhtbA==') 
 dialog              = xbmcgui.Dialog()
@@ -206,7 +212,7 @@ def SEARCH_DECIDE():
 def SEARCH_HOME(url):
 
 	term = url
-	total = 15
+	total = 17
 	i = 0
 	if term == "null":
 		string =''
@@ -254,7 +260,7 @@ def SEARCH_HOME(url):
 		try:
 			xhamster.GET_CONTENT(url)
 		except: pass
-		url = "http://www.pornhd.com/search?search=" + string.lower()
+		url = "https://www.pornhd.com/search?search=" + string.lower()
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -262,7 +268,7 @@ def SEARCH_HOME(url):
 		try:
 			pornhd.GET_CONTENT(url)
 		except: pass
-		url = "http://www.porn.com/videos/search?q=" + string.lower()
+		url = "https://www.porn.com/videos/search?q=" + string.lower()
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -270,7 +276,7 @@ def SEARCH_HOME(url):
 		try:
 			porncom.GET_CONTENT(url)
 		except: pass
-		url = "http://www.redtube.com/?search=" + string.lower()
+		url = "https://www.redtube.com/?search=" + string.lower()
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -278,7 +284,7 @@ def SEARCH_HOME(url):
 		try:
 			redtube.GET_CONTENT(url)
 		except: pass
-		url = "http://pornfun.com/search/?q=" + string.lower()
+		url = "https://pornfun.com/search/?q=" + string.lower()
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -286,7 +292,7 @@ def SEARCH_HOME(url):
 		try:
 			pornfun.GET_CONTENT(url)
 		except: pass
-		url = "http://spankbang.com/s/" + string.lower()
+		url = "http://spankbang.com/s/" + string.lower() + "/"
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -310,7 +316,7 @@ def SEARCH_HOME(url):
 		try:
 			virtualpornstars.GET_CONTENT(url)
 		except: pass
-		url = "http://watchxxxfree.com/?s=" + string.lower()
+		url = "https://watchxxxfree.com/?s=" + string.lower()
 		url = 'split|'+url
 		i = i + 1
 		progress = 100 * int(i)/int(total)
@@ -353,6 +359,22 @@ def SEARCH_HOME(url):
 		dp.update(progress, '[COLOR white]Searching: [/COLOR] [COLOR orangered]Eporner[/COLOR]','[COLOR white]Term: [/COLOR][COLOR deeppink]' + term.lower() + '[/COLOR]','[COLOR white]Source: [/COLOR][COLOR pink]' + str(i) + ' of '+  str(total) + '[/COLOR]')
 		try:
 			eporner.GET_CONTENT(url)
+		except: pass
+		url = "http://pornxs.com/search.php?s=" + string.lower()
+		url = 'split|'+url
+		i = i + 1
+		progress = 100 * int(i)/int(total)
+		dp.update(progress, '[COLOR white]Searching: [/COLOR] [COLOR orangered]PornXS[/COLOR]','[COLOR white]Term: [/COLOR][COLOR deeppink]' + term.lower() + '[/COLOR]','[COLOR white]Source: [/COLOR][COLOR pink]' + str(i) + ' of '+  str(total) + '[/COLOR]')
+		try:
+			pornxs.GET_CONTENT(url)
+		except: pass
+		url = "http://www.xvideos.com/?k=" + string.lower()
+		url = 'split|'+url
+		i = i + 1
+		progress = 100 * int(i)/int(total)
+		dp.update(progress, '[COLOR white]Searching: [/COLOR] [COLOR orangered]Xvideos[/COLOR]','[COLOR white]Term: [/COLOR][COLOR deeppink]' + term.lower() + '[/COLOR]','[COLOR white]Source: [/COLOR][COLOR pink]' + str(i) + ' of '+  str(total) + '[/COLOR]')
+		try:
+			xvideos.GET_CONTENT(url)
 		except: pass
 		dp.close()
 	except:
@@ -908,6 +930,16 @@ elif mode==241:eporner.GET_CONTENT(url)
 elif mode==242:eporner.SEARCH(url)
 elif mode==243:eporner.PLAY_URL(name,url,iconimage)
 elif mode==244:eporner.SEARCH_DECIDE()
+elif mode==250:pornxs.MAIN_MENU()
+elif mode==251:pornxs.GET_CONTENT(url)
+elif mode==252:pornxs.SEARCH(url)
+elif mode==253:pornxs.PLAY_URL(name,url,iconimage)
+elif mode==254:pornxs.SEARCH_DECIDE()
+elif mode==260:xvideos.MAIN_MENU()
+elif mode==261:xvideos.GET_CONTENT(url)
+elif mode==262:xvideos.SEARCH(url)
+elif mode==263:xvideos.PLAY_URL(name,url,iconimage)
+elif mode==264:xvideos.SEARCH_DECIDE()
 elif mode==800:PLAYER(name,url,iconimage)
 elif mode==900:PARENTAL_CONTROLS()
 elif mode==901:PARENTAL_CONTROLS_PIN()
