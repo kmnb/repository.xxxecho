@@ -51,6 +51,7 @@ def MAIN_MENU():
 		title=re.compile('<a href=".+?" title="(.+?)"><span>.+?</span></a>').findall(item)[0]
 		try:
 			icon_cat=re.compile('data-lazy-src="(.+?)"').findall(item)[0]
+			icon_cat = "http:" + icon_cat
 		except: icon_cat=icon
 		number=re.compile('<span class="nb_cat border-radius-5">(.+?)</span>').findall(item)[0]
 		b = str(number)
@@ -80,7 +81,7 @@ def GET_CONTENT(url):
 	for item in match:
 		title=re.compile('title="(.+?)"').findall(item)[0]
 		url=re.compile('href="(.+?)"').findall(item)[0]
-		iconimage=re.compile('src="(.+?)"').findall(item)[0]
+		iconimage=re.compile('data-lazy-src="(.+?)"').findall(item)[0]
 		try:
 			rating=re.compile('<div class="rating-infos">(.+?)<span class="rating-img">').findall(item)[0]						
 		except: rating = "0%"

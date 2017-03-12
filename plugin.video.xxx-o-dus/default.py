@@ -25,37 +25,12 @@ from resources.lib.scrapers import justpornotv
 from resources.lib.scrapers import eporner
 from resources.lib.scrapers import pornxs
 from resources.lib.scrapers import xvideos
+from resources.lib.scrapers import nxgx
 
 addon_id            = 'plugin.video.xxx-o-dus'
 AddonTitle          = '[COLOR orangered]XXX-O-DUS[/COLOR]'
 fanart              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon                = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-xhamster_icon       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xhamster/icon.png'))
-xhamster_fanart     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xhamster/fanart.jpg'))
-chaturbate_icon     = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/chaturbate/icon.png'))
-chaturbate_fanart   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/chaturbate/fanart.jpg'))
-xnxx_icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xnxx/icon.png'))
-xnxx_fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xnxx/fanart.jpg'))
-redtube_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/redtube/icon.png'))
-redtube_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/redtube/fanart.jpg'))
-pornhd_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornhd/icon.png'))
-pornhd_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornhd/fanart.jpg'))
-porncom_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/icon.png'))
-porncom_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/porncom/fanart.jpg'))
-youporn_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youporn/icon.png'))
-youporn_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youporn/fanart.jpg'))
-pornfun_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornfun/icon.png'))
-pornfun_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornfun/fanart.jpg'))
-spankbang_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/spankbang/icon.png'))
-spankbang_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/spankbang/fanart.jpg'))
-watchxxxfree_icon   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/watchxxxfree/icon.png'))
-watchxxxfree_fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/watchxxxfree/fanart.jpg'))
-justporno_icon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/icon.png'))
-justporno_fanart    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/justporno/fanart.jpg'))
-pornxs_icon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/icon.png'))
-pornxs_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/fanart.jpg'))
-xvideos_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/icon.png'))
-xvideos_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/fanart.jpg'))
 
 BASE                = base64.decodestring('aHR0cDovL2VjaG9jb2Rlci5jb20vcHJpdmF0ZS9hZGRvbnMvc3BvcnRpZS9tZW51cy9tYWluLnhtbA==') 
 dialog              = xbmcgui.Dialog()
@@ -83,8 +58,6 @@ GET_VERSION         =  xbmc.translatePath('special://home/addons/' + addon_id + 
 GET_REPO_VERSION    =  xbmc.translatePath('special://home/addons/repository.xxxecho/addon.xml')
 BASE_UPDATE         = base64.b64decode(b'aHR0cHM6Ly9naXRodWIuY29tL2VjaG9jb2RlcmtvZGkvcmVwb3NpdG9yeS54eHhlY2hvL3Jhdy9tYXN0ZXIvemlwcy9wbHVnaW4udmlkZW8ueHh4LW8tZHVzL3BsdWdpbi52aWRlby54eHgtby1kdXMt')
 BASE_REPO_UPDATE    = base64.b64decode(b'aHR0cHM6Ly9naXRodWIuY29tL2VjaG9jb2RlcmtvZGkvcmVwb3NpdG9yeS54eHhlY2hvL3Jhdy9tYXN0ZXIvemlwcy9yZXBvc2l0b3J5Lnh4eGVjaG8vcmVwb3NpdG9yeS54eHhlY2hvLQ==')
-
-#cache.check()
 
 SEND_TO_CHECK = REPO_FOLDER + '|SPLIT|' + REPO_INFO
 checker.check(SEND_TO_CHECK)
@@ -212,7 +185,7 @@ def SEARCH_DECIDE():
 def SEARCH_HOME(url):
 
 	term = url
-	total = 17
+	total = 18
 	i = 0
 	if term == "null":
 		string =''
@@ -375,6 +348,15 @@ def SEARCH_HOME(url):
 		dp.update(progress, '[COLOR white]Searching: [/COLOR] [COLOR orangered]Xvideos[/COLOR]','[COLOR white]Term: [/COLOR][COLOR deeppink]' + term.lower() + '[/COLOR]','[COLOR white]Source: [/COLOR][COLOR pink]' + str(i) + ' of '+  str(total) + '[/COLOR]')
 		try:
 			xvideos.GET_CONTENT(url)
+		except: pass
+		string = string.replace('+','-')
+		url = "http://www.nxgx.com/search/" + string.lower()
+		url = 'split|'+url
+		i = i + 1
+		progress = 100 * int(i)/int(total)
+		dp.update(progress, '[COLOR white]Searching: [/COLOR] [COLOR orangered]NXGX[/COLOR]','[COLOR white]Term: [/COLOR][COLOR deeppink]' + term.lower() + '[/COLOR]','[COLOR white]Source: [/COLOR][COLOR pink]' + str(i) + ' of '+  str(total) + '[/COLOR]')
+		try:
+			nxgx.GET_CONTENT(url)
 		except: pass
 		dp.close()
 	except:
@@ -940,6 +922,11 @@ elif mode==261:xvideos.GET_CONTENT(url)
 elif mode==262:xvideos.SEARCH(url)
 elif mode==263:xvideos.PLAY_URL(name,url,iconimage)
 elif mode==264:xvideos.SEARCH_DECIDE()
+elif mode==270:nxgx.MAIN_MENU()
+elif mode==271:nxgx.GET_CONTENT(url)
+elif mode==272:nxgx.SEARCH(url)
+elif mode==273:nxgx.PLAY_URL(name,url,iconimage)
+elif mode==274:nxgx.SEARCH_DECIDE()
 elif mode==800:PLAYER(name,url,iconimage)
 elif mode==900:PARENTAL_CONTROLS()
 elif mode==901:PARENTAL_CONTROLS_PIN()

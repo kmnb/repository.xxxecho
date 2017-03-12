@@ -123,7 +123,7 @@ def SEARCH(url):
 
 def MAIN_MENU_PICTURES():
 
-	result = common.open_url(BASE)
+	result = common.open_url(BASE_IMAGE)
 	
 	match = re.compile('<div class="sub_menu dark-menu">(.+?)<a class="feed-link medium"',re.DOTALL).findall(result)
 	string = str(match)

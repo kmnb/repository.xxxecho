@@ -62,6 +62,8 @@ pornxs_icon         = xbmc.translatePath(os.path.join('special://home/addons/' +
 pornxs_fanart       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/pornxs/fanart.jpg'))
 xvideos_icon        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/icon.png'))
 xvideos_fanart      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/xvideos/fanart.jpg'))
+nxgx_icon           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/nxgx/icon.png'))
+nxgx_fanart         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/nxgx/fanart.jpg'))
 
 def SEARCH():
 
@@ -70,6 +72,7 @@ def SEARCH():
 	common.addDir("[COLOR white]Search Eporner[/COLOR]",'null',244,eporner_icon,eporner_fanart)
 	common.addDir("[COLOR white]Search Just Porno TV[/COLOR]","null",234,justporno_icon,justporno_fanart)
 	common.addDir("[COLOR white]Search Motherless[/COLOR]","null",97,motherless_icon,motherless_fanart)
+	common.addDir("[COLOR white]Search NXGX[/COLOR]","null",274,nxgx_icon,nxgx_fanart)
 	common.addDir("[COLOR white]Search Perfect Girls[/COLOR]","null",314,perfectgirls_icon,perfectgirls_fanart)
 	common.addDir("[COLOR white]Search Porn.com[/COLOR]","null",64,porncom_icon,porncom_fanart)
 	common.addDir("[COLOR white]Search Porn00[/COLOR]","null",214,porn00_icon,porn00_fanart)
@@ -98,6 +101,7 @@ def VIDEOS():
 	common.addDir("[COLOR white]Eporner.com[/COLOR]",'url',240,eporner_icon,eporner_fanart)
 	common.addDir("[COLOR white]JustPorno.TV[/COLOR]",'url',230,justporno_icon,justporno_fanart)
 	common.addDir("[COLOR white]Motherless.com[/COLOR]",'url',93,motherless_icon,motherless_fanart)
+	common.addDir("[COLOR white]NXGX.com[/COLOR]",'url',270,nxgx_icon,nxgx_fanart)
 	common.addDir("[COLOR white]Perfectgirls.net[/COLOR]",'url',310,perfectgirls_icon,perfectgirls_fanart)
 	common.addDir("[COLOR white]Porn00.org[/COLOR]",'url',210,porn00_icon,porn00_fanart)
 	common.addDir("[COLOR white]Porn.com[/COLOR]",'url',60,porncom_icon,porncom_fanart)
